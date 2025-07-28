@@ -17,6 +17,8 @@ public class AppRunner implements CommandLineRunner {
         String currentCompanyName = "Probity Software Pvt Ltd.";
         String yearExperience = "3+";
         String skils = "Java, Spring Boot, Spring MVC, Spring Data, REST APIs, Microservices, PostgreSQL, Oracle, and Jasper Reports";
-        bulkEmailService.sendEmailsFromExcel(excelPath, resumePath,currentCompanyName,yearExperience, skils);
+        String resumeName ="Ravikiran_Resume.pdf";
+        
+        bulkEmailService.sendEmailsFromExcel(excelPath, resumePath,currentCompanyName,yearExperience, skils,resumeName);
     }
 }
