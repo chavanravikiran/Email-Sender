@@ -22,7 +22,7 @@ public class BulkEmailService {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	public void sendEmailsFromExcel(String excelPath, String resumePath,String currentCompanyName,String yearExperience,String skils) {
+	public void sendEmailsFromExcel(String excelPath, String resumePath,String currentCompanyName,String yearExperience,String skils,String resumeName) {
 		try (FileInputStream fis = new FileInputStream(excelPath); Workbook workbook = new XSSFWorkbook(fis)) {
 
 			Sheet sheet = workbook.getSheetAt(0); // First sheet
@@ -47,7 +47,7 @@ public class BulkEmailService {
 				String[] emailIds = emailField.split("\\r?\\n"); // for multiple IDs
 
 				 try {
-		                sendEmail(emailIds, companyName, resumePath, currentCompanyName, applylocation, yearExperience, skils);
+		                sendEmail(emailIds, companyName, resumePath, currentCompanyName, applylocation, yearExperience, skils,resumeName);
 		                System.out.println("✅ Email sent successfully for row " + (i + 1));
 		            } catch (Exception ex) {
 		                System.out.println("❌ Failed to send email for row " + (i + 1) + ": " + ex.getMessage());
@@ -59,7 +59,7 @@ public class BulkEmailService {
 		}
 	}
 
-	private void sendEmail(String[] recipients, String companyName, String resumePath,String currentCompanyName,String applylocation,String yearExperience,String skils) {
+	private void sendEmail(String[] recipients, String companyName, String resumePath,String currentCompanyName,String applylocation,String yearExperience,String skils,String resumeName) {
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -69,7 +69,7 @@ public class BulkEmailService {
 
 			String emailContent ="Hi,\n\n"
 					+"I hope you're doing well. I came across the Java Backend Developer role at "+companyName+" in "+applylocation+" and wanted to express my interest.\r\n"
-					+ "With "+yearExperience+"+ years of experience in "+skils+", I believe I could be a strong fit.\r\n\n"
+					+ "with "+yearExperience+" years of experience in "+skils+", I believe I could be a strong fit.\r\n\n"
 					+ "Could you please let me know the right channel to apply or connect with the relevant hiring team?\r\n\n"
 					+ "Looking forward to your response.\r\n\n"
 					+ "Best Regards,\n" + "Ravikiran Chavan \n"
@@ -80,7 +80,7 @@ public class BulkEmailService {
 
 			// Attach Resume
 			FileSystemResource file = new FileSystemResource(new File(resumePath));
-			helper.addAttachment("Ravikiran_Resume.pdf", file);
+			helper.addAttachment(resumeName, file);
 
 			mailSender.send(message);
 			System.out.println("Email sent to: " + Arrays.toString(recipients));
