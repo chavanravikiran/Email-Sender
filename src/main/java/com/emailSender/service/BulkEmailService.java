@@ -60,34 +60,34 @@ public class BulkEmailService {
 	}
 
 	private void sendEmail(String[] recipients, String companyName, String resumePath,String currentCompanyName,String applylocation,String yearExperience,String skils,String resumeName) {
-		try {
-			MimeMessage message = mailSender.createMimeMessage();
-			MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
-			helper.setTo(recipients);
-			helper.setSubject("Inquiry: Java / Spring Boot Opportunity at " + companyName);
-
-			String emailContent ="Hi,\n\n"
-					+"I hope you're doing well. I came across the Java Backend Developer role at "+companyName+" in "+applylocation+" and wanted to express my interest.\r\n"
-					+ "with "+yearExperience+" years of experience in "+skils+", I believe I could be a strong fit.\r\n\n"
-					+ "Could you please let me know the right channel to apply or connect with the relevant hiring team?\r\n\n"
-					+ "Looking forward to your response.\r\n\n"
-					+ "Best Regards,\n" + "Ravikiran Chavan \n"
-					+ "https://www.linkedin.com/in/ravikiran-chavan-2846b1188/\r\n"
-					+ "https://ravikiran-portfolio.vercel.app/ ";
-			
-			helper.setText(emailContent);
-
-			// Attach Resume
-			FileSystemResource file = new FileSystemResource(new File(resumePath));
-			helper.addAttachment(resumeName, file);
-
-			mailSender.send(message);
-			System.out.println("Email sent to: " + Arrays.toString(recipients));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			MimeMessage message = mailSender.createMimeMessage();
+//			MimeMessageHelper helper = new MimeMessageHelper(message, true);
+//
+//			helper.setTo(recipients);
+//			helper.setSubject("Inquiry: Java / Spring Boot Opportunity at " + companyName);
+//
+//			String emailContent ="Hi,\n\n"
+//					+"I hope you're doing well. I came across the Java Backend Developer role at "+companyName+" in "+applylocation+" and wanted to express my interest.\r\n"
+//					+ "with "+yearExperience+" years of experience in "+skils+", I believe I could be a strong fit.\r\n\n"
+//					+ "Could you please let me know the right channel to apply or connect with the relevant hiring team?\r\n\n"
+//					+ "Looking forward to your response.\r\n\n"
+//					+ "Best Regards,\n" + "Ravikiran Chavan \n"
+//					+ "https://www.linkedin.com/in/ravikiran-chavan-2846b1188/\r\n"
+//					+ "https://ravikiran-portfolio.vercel.app/ ";
+//			
+//			helper.setText(emailContent);
+//
+//			// Attach Resume
+//			FileSystemResource file = new FileSystemResource(new File(resumePath));
+//			helper.addAttachment(resumeName, file);
+//
+//			mailSender.send(message);
+//			System.out.println("Email sent to: " + Arrays.toString(recipients));
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	private String getCellValue(Cell cell) {
