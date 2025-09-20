@@ -13,12 +13,14 @@ public class AppRunner implements CommandLineRunner {
 
     public void run(String... args) {
         String excelPath = "E:/Study Materials-Spring Boot/Resume/emails.xlsx";
-        String resumePath = "E:/Study Materials-Spring Boot/Resume/Ravikiran_Chavan_Resume.pdf";
+        String resumePath = "E:/Study Materials-Spring Boot/Resume/RavikiranChavan_Backend_Dev.pdf";
+        String coverPagePath = "E:/Study Materials-Spring Boot/Resume/Ravikiran_Chavan_Cover_Page.pdf";
         String currentCompanyName = "Probity Software Pvt Ltd.";
         String yearExperience = "3+";
         String skils = "Java, Spring Boot, Spring MVC, Spring Data, REST APIs, Microservices, PostgreSQL, Oracle, and Jasper Reports";
-        String resumeName ="Ravikiran_Resume.pdf";
+        String resumeName ="Ravikiran_Chavan_Resume.pdf";
+        String emailTitle ="Ravikiran Chavan";
         
-        bulkEmailService.sendEmailsFromExcel(excelPath, resumePath,currentCompanyName,yearExperience, skils,resumeName);
+        bulkEmailService.sendEmailsFromExcel(excelPath, resumePath,currentCompanyName,yearExperience, skils,resumeName,coverPagePath,emailTitle);
     }
 }
